@@ -25,6 +25,30 @@ Connection conn=null;
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList5 = new javax.swing.JList();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jList6 = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jList7 = new javax.swing.JList();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jList8 = new javax.swing.JList();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList9 = new javax.swing.JList();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -39,15 +63,129 @@ Connection conn=null;
             }
         });
 
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "task 1", "task 2", "task 3", "task 4", "task 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jTabbedPane2.addTab("today", jScrollPane1);
+
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        jTabbedPane2.addTab("tomorow", jScrollPane2);
+
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "task 1", "task 2", "task 3", "task 4", "task 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList3);
+
+        jTabbedPane2.addTab("...", jScrollPane3);
+
+        jList4.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "goal 1", "goal 2", "goal 3", "goal 4", "goal 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jList4);
+
+        jTabbedPane3.addTab("this month", jScrollPane4);
+
+        jList5.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jList5);
+
+        jTabbedPane3.addTab("next month", jScrollPane5);
+
+        jList6.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "goal 1", "goal 2", "goal 3", "goal 4", "goal 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane6.setViewportView(jList6);
+
+        jTabbedPane3.addTab("...", jScrollPane6);
+
+        jLabel1.setText("days' tasks:");
+
+        jLabel2.setText("Months' Goals:");
+
+        jLabel3.setText("Years' Goals");
+
+        jList7.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "goal 1", "goal 2", "goal 3", "goal 4", "goal 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane7.setViewportView(jList7);
+
+        jTabbedPane4.addTab("this year", jScrollPane7);
+
+        jList8.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane8.setViewportView(jList8);
+
+        jTabbedPane4.addTab("next year", jScrollPane8);
+
+        jList9.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane9.setViewportView(jList9);
+
+        jTabbedPane4.addTab("...", jScrollPane9);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTabbedPane3)
+                            .addComponent(jTabbedPane2)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(0, 463, Short.MAX_VALUE))))
+                    .addComponent(jTabbedPane4))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Goals", jPanel2);
@@ -60,7 +198,7 @@ Connection conn=null;
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Graphs", jPanel3);
@@ -73,7 +211,7 @@ Connection conn=null;
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("History", jPanel4);
@@ -86,7 +224,7 @@ Connection conn=null;
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Settings", jPanel5);
@@ -159,6 +297,18 @@ Connection conn=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
+    private javax.swing.JList jList3;
+    private javax.swing.JList jList4;
+    private javax.swing.JList jList5;
+    private javax.swing.JList jList6;
+    private javax.swing.JList jList7;
+    private javax.swing.JList jList8;
+    private javax.swing.JList jList9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -166,6 +316,18 @@ Connection conn=null;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
     // End of variables declaration//GEN-END:variables
 }

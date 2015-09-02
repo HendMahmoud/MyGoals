@@ -44,6 +44,11 @@ public class newTaskorGoal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(description);
 
         goalType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day task", "Month Goal", "Year Goal", "Life Goal" }));
+        goalType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goalTypeActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Type:");
 
@@ -98,6 +103,10 @@ public class newTaskorGoal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void goalTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goalTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_goalTypeActionPerformed
 
     /**
      * @param args the command line arguments

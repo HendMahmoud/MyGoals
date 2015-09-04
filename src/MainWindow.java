@@ -16,7 +16,10 @@ ResultSet rs = null; //results
     public MainWindow() {    
       initComponents();
       conn=Connect.connectdb();
-
+       Daygoalsshowdata();
+       Lifegoalsshowdata();
+       Monthgoalsshowdata();
+       Yeargoalsshowdata();
     // Insert this line into your code
         ComboBoxHistory.addActionListener (new ActionListener () {
     public void actionPerformed(ActionEvent e) {
@@ -26,6 +29,7 @@ ResultSet rs = null; //results
  
     }
 
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,20 +45,20 @@ ResultSet rs = null; //results
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Daysgoalstable = new javax.swing.JTable();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jScrollPane15 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        Monthsgoalstable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jScrollPane16 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        Yearsgoalstable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jScrollPane17 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        Lifegoalstable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -74,7 +78,7 @@ ResultSet rs = null; //results
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Daysgoalstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,11 +89,11 @@ ResultSet rs = null; //results
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane14.setViewportView(jTable1);
+        jScrollPane14.setViewportView(Daysgoalstable);
 
         jTabbedPane2.addTab("tab1", jScrollPane14);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        Monthsgoalstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,7 +104,7 @@ ResultSet rs = null; //results
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane15.setViewportView(jTable2);
+        jScrollPane15.setViewportView(Monthsgoalstable);
 
         jTabbedPane3.addTab("tab1", jScrollPane15);
 
@@ -110,7 +114,7 @@ ResultSet rs = null; //results
 
         jLabel3.setText("Years' Goals");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        Yearsgoalstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -121,13 +125,13 @@ ResultSet rs = null; //results
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane16.setViewportView(jTable3);
+        jScrollPane16.setViewportView(Yearsgoalstable);
 
         jTabbedPane4.addTab("tab1", jScrollPane16);
 
         jLabel4.setText("Life Goals:");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        Lifegoalstable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,7 +142,7 @@ ResultSet rs = null; //results
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane17.setViewportView(jTable4);
+        jScrollPane17.setViewportView(Lifegoalstable);
 
         jTabbedPane5.addTab("tab1", jScrollPane17);
 
@@ -347,6 +351,74 @@ ResultSet rs = null; //results
             }
         });
     }
+    
+    void Daygoalsshowdata()
+    {
+             String sql = "select * from Days_Goals where strftime('%Y', GoalDate)>=strftime('%Y', DateTime('now')) \n" +
+            "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)>=strftime('%m', DateTime('now'))\n" +
+            "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)==strftime('%m', DateTime('now')) AND strftime('%d', GoalDate)>=strftime('%d', DateTime('now')) ;";
+            try
+            {
+                pst=conn.prepareStatement(sql);
+                rs=pst.executeQuery();
+                Daysgoalstable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) 
+            {
+                //System.out.println("dff");
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+        void Monthgoalsshowdata()
+    {
+             String sql = "select * from Months_Goals where strftime('%Y', GoalDate)>=strftime('%Y', DateTime('now')) \n" +
+            "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)>=strftime('%m', DateTime('now'))";
+            try
+            {
+                pst=conn.prepareStatement(sql);
+                rs=pst.executeQuery();
+                Monthsgoalstable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) 
+            {
+                //System.out.println("dff");
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+    
+                void Yeargoalsshowdata()
+    {
+             String sql = "select * from Years_Goals where strftime('%Y', GoalDate)>=strftime('%Y', DateTime('now'))";
+            try
+            {
+                pst=conn.prepareStatement(sql);
+                rs=pst.executeQuery();
+                Yearsgoalstable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) 
+            {
+                //System.out.println("dff");
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+    
+                   
+                void Lifegoalsshowdata()
+    {
+             String sql = "select * from Life_Goals ";
+            try
+            {
+                pst=conn.prepareStatement(sql);
+                rs=pst.executeQuery();
+                Lifegoalstable.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (SQLException ex) 
+            {
+                //System.out.println("dff");
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+    
         private void update_table()
         {
             
@@ -377,7 +449,11 @@ ResultSet rs = null; //results
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboBoxHistory;
+    private javax.swing.JTable Daysgoalstable;
     private javax.swing.JTable HistoryTable;
+    private javax.swing.JTable Lifegoalstable;
+    private javax.swing.JTable Monthsgoalstable;
+    private javax.swing.JTable Yearsgoalstable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -402,9 +478,5 @@ ResultSet rs = null; //results
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,10 +20,18 @@ public class newTaskorGoal extends javax.swing.JFrame {
     /**
      * Creates new form newTaskorGoal
      */
+    public void fillyearList(){
+        for (int i = 2015; i <= 3000; i++) {
+            year.addItem(i);
+        }
+    }
     public newTaskorGoal() {
         initComponents();
         jLabel3.setVisible(false);
-        goalDate.setVisible(false);
+        day.setVisible(false);
+        month.setVisible(false);
+        year.setVisible(false); 
+        fillyearList();
     }
 
     /**
@@ -41,8 +49,10 @@ public class newTaskorGoal extends javax.swing.JFrame {
         goalType = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        goalDate = new javax.swing.JTextField();
         addBtn = new javax.swing.JButton();
+        day = new javax.swing.JComboBox();
+        month = new javax.swing.JComboBox();
+        year = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +80,10 @@ public class newTaskorGoal extends javax.swing.JFrame {
             }
         });
 
+        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,8 +92,11 @@ public class newTaskorGoal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -87,12 +104,13 @@ public class newTaskorGoal extends javax.swing.JFrame {
                                 .addComponent(goalType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(34, 34, 34)
-                                .addComponent(goalDate)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,7 +127,9 @@ public class newTaskorGoal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(goalDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(addBtn)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -119,19 +139,35 @@ public class newTaskorGoal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goalTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goalTypeActionPerformed
-        if(goalType.getSelectedIndex()==1||goalType.getSelectedIndex()==2||goalType.getSelectedIndex()==3){
+        if(goalType.getSelectedIndex()==1){
             jLabel3.setVisible(true);
-            goalDate.setVisible(true);
+            day.setVisible(true);
+            month.setVisible(true);
+            year.setVisible(true);            
         }
-        else{ 
+        else if(goalType.getSelectedIndex()==2){
+            jLabel3.setVisible(true);
+            day.setVisible(false);
+            month.setVisible(true);
+            year.setVisible(true);
+        }
+        else if(goalType.getSelectedIndex()==3){
+            jLabel3.setVisible(true);
+            day.setVisible(false);
+            month.setVisible(false);
+            year.setVisible(true);
+        }
+        else {
             jLabel3.setVisible(false);
-            goalDate.setVisible(false);
+            day.setVisible(false);
+            month.setVisible(false);
+            year.setVisible(false);
         }
     }//GEN-LAST:event_goalTypeActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         conn=Connect.connectdb();
-        try {System.out.println(description.getText());
+        try {
             int type =goalType.getSelectedIndex();
             String table="non";
             switch(type){
@@ -161,11 +197,19 @@ public class newTaskorGoal extends javax.swing.JFrame {
                 quary="insert into "+table+" (Goal,Finished)values('"+description.getText()+"',0)";
             else 
             quary="insert into "+table+" (GoalDate,Goal,Finished)values('"
-                    +goalDate.getText()+"','"+description.getText()+"',0)";
++year.getSelectedItem().toString()+"-"+ month.getSelectedItem().toString()+"-"+day.getSelectedItem().toString()
+                    +"','"+description.getText()+"',0)";
            
             pst=conn.prepareStatement(quary);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Added =D");
+            
+            description.setText(null);
+            goalType.setSelectedIndex(0);
+            day.setSelectedIndex(0);
+            month.setSelectedIndex(0);
+            year.setSelectedIndex(0);
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -208,12 +252,14 @@ public class newTaskorGoal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JComboBox day;
     private javax.swing.JTextArea description;
-    private javax.swing.JTextField goalDate;
     private javax.swing.JComboBox goalType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox month;
+    private javax.swing.JComboBox year;
     // End of variables declaration//GEN-END:variables
 }

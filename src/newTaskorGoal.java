@@ -136,24 +136,31 @@ public class newTaskorGoal extends javax.swing.JFrame {
             String table="non";
             switch(type){
                 case 0:{
-                    table = "Days_Goals";
+                    JOptionPane.showMessageDialog(null, "Select Type please!");
                     break;
                 }
                 case 1:{
-                    table = "Months_Goals";
+                    table = "Days_Goals";
                     break;
                 }
                 case 2:{
-                    table = "Years_Goals";
+                    table = "Months_Goals";
                     break;
                 }
                 case 3:{
+                    table = "Years_Goals";
+                    break;
+                }
+                case 4:{
                     table = "Life_Goals";
                     break;
                 }
             }
-            
-            String quary="insert into "+table+" (GoalDate,Goal,Finished)values('"
+            String quary;
+            if(type==4)
+                quary="insert into "+table+" (Goal,Finished)values('"+description.getText()+"',0)";
+            else 
+            quary="insert into "+table+" (GoalDate,Goal,Finished)values('"
                     +goalDate.getText()+"','"+description.getText()+"',0)";
            
             pst=conn.prepareStatement(quary);

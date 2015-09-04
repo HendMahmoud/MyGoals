@@ -100,11 +100,12 @@
     <Component class="javax.swing.JComboBox" name="goalType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Day task"/>
-            <StringItem index="1" value="Month Goal"/>
-            <StringItem index="2" value="Year Goal"/>
-            <StringItem index="3" value="Life Goal"/>
+          <StringArray count="5">
+            <StringItem index="0" value="--select type--"/>
+            <StringItem index="1" value="Day task"/>
+            <StringItem index="2" value="Month Goal"/>
+            <StringItem index="3" value="Year Goal"/>
+            <StringItem index="4" value="Life Goal"/>
           </StringArray>
         </Property>
       </Properties>
@@ -128,6 +129,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -1,3 +1,8 @@
+
+import java.sql.*;
+import java.util.concurrent.ExecutionException;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +14,16 @@
  * @author hend
  */
 public class newTaskorGoal extends javax.swing.JFrame {
-
+    Connection conn=null;
+    PreparedStatement pst =null;//for working with sql 
+    ResultSet rs = null; //results
     /**
      * Creates new form newTaskorGoal
      */
     public newTaskorGoal() {
         initComponents();
+        jLabel3.setVisible(false);
+        goalDate.setVisible(false);
     }
 
     /**
@@ -43,7 +52,7 @@ public class newTaskorGoal extends javax.swing.JFrame {
         description.setRows(5);
         jScrollPane1.setViewportView(description);
 
-        goalType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day task", "Month Goal", "Year Goal", "Life Goal" }));
+        goalType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--select type--", "Day task", "Month Goal", "Year Goal", "Life Goal" }));
         goalType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goalTypeActionPerformed(evt);
@@ -55,6 +64,11 @@ public class newTaskorGoal extends javax.swing.JFrame {
         jLabel3.setText("Date:");
 
         addBtn.setText("Add");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,8 +119,50 @@ public class newTaskorGoal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goalTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goalTypeActionPerformed
-        // TODO add your handling code here:
+        if(goalType.getSelectedIndex()==1||goalType.getSelectedIndex()==2||goalType.getSelectedIndex()==3){
+            jLabel3.setVisible(true);
+            goalDate.setVisible(true);
+        }
+        else{ 
+            jLabel3.setVisible(false);
+            goalDate.setVisible(false);
+        }
     }//GEN-LAST:event_goalTypeActionPerformed
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        conn=Connect.connectdb();
+        try {System.out.println(description.getText());
+            int type =goalType.getSelectedIndex();
+            String table="non";
+            switch(type){
+                case 0:{
+                    table = "Days_Goals";
+                    break;
+                }
+                case 1:{
+                    table = "Months_Goals";
+                    break;
+                }
+                case 2:{
+                    table = "Years_Goals";
+                    break;
+                }
+                case 3:{
+                    table = "Life_Goals";
+                    break;
+                }
+            }
+            
+            String quary="insert into "+table+" (GoalDate,Goal,Finished)values('"
+                    +goalDate.getText()+"','"+description.getText()+"',0)";
+           
+            pst=conn.prepareStatement(quary);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Added =D");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_addBtnActionPerformed
 
     /**
      * @param args the command line arguments

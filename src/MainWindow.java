@@ -170,7 +170,7 @@ ResultSet rs = null; //results
                         .addComponent(jLabel2)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 725, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(376, 376, 376)
@@ -251,12 +251,14 @@ ResultSet rs = null; //results
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboBoxHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(438, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ComboBoxHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,26 +432,39 @@ ResultSet rs = null; //results
             //take the name of the table
             String Name = (String)ComboBoxHistory.getSelectedItem(); 
            if(Name!="--")
-            //String Name = ComboBoxHistory.getEditor().getItem().toString();
-            //System.out.println(Name);
-           {sql+=Name;
-            //
-            sql+=" where strftime('%Y', GoalDate)<strftime('%Y', DateTime('now')) \n" +
-            "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)<strftime('%m', DateTime('now'))\n" +
-            "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)==strftime('%m', DateTime('now')) AND strftime('%d', GoalDate)<strftime('%d', DateTime('now')) ;";
-            try
-            {
-                pst=conn.prepareStatement(sql);
-                rs=pst.executeQuery();
-                HistoryTable.setModel(DbUtils.resultSetToTableModel(rs));
-            } catch (SQLException ex) 
-            {
-                //System.out.println("dff");
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           }  
-       }
-    
+           {
+               sql+=Name;
+               if(Name=="Years_Goals")
+               {
+                     sql+=" where strftime('%Y', GoalDate)<strftime('%Y', DateTime('now'))";
+               }
+           }   
+           
+           else if(Name=="Months_Goals")       
+           {       
+                   sql+=" where strftime('%Y', GoalDate)<strftime('%Y', DateTime('now')) \n" +
+                   "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)<strftime('%m', DateTime('now'))";
+           }    
+          
+           else if(Name=="Months_Goals") 
+           {
+               sql+=" where strftime('%Y', GoalDate)<strftime('%Y', DateTime('now')) \n" +
+                "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)<strftime('%m', DateTime('now')) \n"+
+                 "OR strftime('%Y', GoalDate)==strftime('%Y', DateTime('now')) AND strftime('%m', GoalDate)==strftime('%m', DateTime('now')) AND strftime('%d', GoalDate)<strftime('%d', DateTime('now')) ;";
+           }
+               try
+                {
+                    pst=conn.prepareStatement(sql);
+                    rs=pst.executeQuery();
+                    HistoryTable.setModel(DbUtils.resultSetToTableModel(rs));
+                } catch (SQLException ex) 
+                {
+                    //System.out.println("dff");
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+          }  
+       
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboBoxHistory;
